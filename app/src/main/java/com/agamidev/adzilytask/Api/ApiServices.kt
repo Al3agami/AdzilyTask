@@ -9,7 +9,6 @@ import retrofit2.http.Query
 interface ApiServices {
     @GET("movie/popular")
     fun getPopularMovies(
-        @Query("api_key") api_key: String,
         @Query("page") page: Int
     ): Single<PopularMoviesResponse>
 }

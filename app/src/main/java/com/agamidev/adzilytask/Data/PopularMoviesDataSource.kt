@@ -24,7 +24,7 @@ class PopularMoviesDataSource (private val apiServices: ApiServices, private val
 
         networkStatus.postValue(NetworkStatus.LOADING)
         compositeDisposable.add(
-            apiServices.getPopularMovies(API_KEY,page)
+            apiServices.getPopularMovies(page)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
@@ -46,7 +46,7 @@ class PopularMoviesDataSource (private val apiServices: ApiServices, private val
         networkStatus.postValue(NetworkStatus.LOADING)
 
         compositeDisposable.add(
-            apiServices.getPopularMovies(API_KEY,params.key)
+            apiServices.getPopularMovies(params.key)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
