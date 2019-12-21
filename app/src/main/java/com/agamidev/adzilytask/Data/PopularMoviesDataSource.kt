@@ -3,11 +3,11 @@ package com.agamidev.adzilytask.Data
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.agamidev.adzilytask.Api.API_KEY
 import com.agamidev.adzilytask.Api.ApiServices
 import com.agamidev.adzilytask.Api.FIRST_PAGE
 import com.agamidev.adzilytask.Api.NetworkStatus
 import com.agamidev.adzilytask.Models.Movie
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -24,10 +24,11 @@ class PopularMoviesDataSource (private val apiServices: ApiServices, private val
 
         networkStatus.postValue(NetworkStatus.LOADING)
         compositeDisposable.add(
-            apiServices.getPopularMovies(page)
+            apiServices.getPopularMovies(API_KEY,page)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
+                        Log.e(TAG,"response_ok")
                         callback.onResult(it.moviesList, null, page+1)
                         networkStatus.postValue(NetworkStatus.LOADED)
 
@@ -35,7 +36,6 @@ class PopularMoviesDataSource (private val apiServices: ApiServices, private val
                     {
                         networkStatus.postValue(NetworkStatus.ERROR)
                         Log.e(TAG,it.message!!)
-                        Log.e(TAG,"LOADINIT")
                     }
                 )
         )
@@ -46,7 +46,7 @@ class PopularMoviesDataSource (private val apiServices: ApiServices, private val
         networkStatus.postValue(NetworkStatus.LOADING)
 
         compositeDisposable.add(
-            apiServices.getPopularMovies(params.key)
+            apiServices.getPopularMovies(API_KEY,params.key)
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {

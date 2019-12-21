@@ -3,7 +3,6 @@ package com.agamidev.adzilytask.Data
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.agamidev.adzilytask.Api.ApiServices
-import com.agamidev.adzilytask.Data.PopularMoviesDataSource
 import com.agamidev.adzilytask.Models.Movie
 import io.reactivex.disposables.CompositeDisposable
 

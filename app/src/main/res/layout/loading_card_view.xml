@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Error loading data, Please try again later"/>
+        android:text="Error loading data"/>
 
     <ProgressBar
         android:id="@+id/progress_bar_cv"

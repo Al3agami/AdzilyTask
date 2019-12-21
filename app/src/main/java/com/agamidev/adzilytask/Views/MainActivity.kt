@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        moviesRepo = MoviesPagedListRepo(RetrofitClient.getClient())
+        moviesRepo = MoviesPagedListRepo(RetrofitClient.client)
 
         viewModel = getViewModel()
 
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.networkStatus.observe(this, Observer {
-            progress_bar_main.visibility = if(it == NetworkStatus.LOADED && viewModel.isEmpty()) View.VISIBLE else View.GONE
+            progress_bar_main.visibility = if(it == NetworkStatus.LOADING && viewModel.isEmpty()) View.VISIBLE else View.GONE
             tv_network_error_main.visibility = if(it == NetworkStatus.ERROR && viewModel.isEmpty()) View.VISIBLE else View.GONE
 
             if(!viewModel.isEmpty()){

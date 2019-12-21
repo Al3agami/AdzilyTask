@@ -1,6 +1,5 @@
 package com.agamidev.adzilytask.ViewModels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
